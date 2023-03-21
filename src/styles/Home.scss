@@ -1,0 +1,140 @@
+h1,
+h2 {
+  margin: 0;
+  padding: 0;
+}
+input:focus {
+  outline: none;
+}
+
+// src/components/home/Title.tsx
+.home-main {
+  margin: 0 auto;
+  margin-top: 50px;
+  max-width: 1200px;
+  min-width: 1200px;
+
+  position: relative;
+  text-align: center;
+}
+
+.home-title {
+  display: inline-block;
+}
+
+.home-menu {
+  width: 100%;
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  .menu-left,
+  .menu-right {
+    display: flex;
+    align-items: center;
+  }
+  .menu-show {
+    color: #888;
+  }
+
+  .menu-input {
+    width: 170px;
+    height: 22px;
+    margin: 0;
+    padding: 0 5px;
+
+    border: 0;
+    background-color: #fff;
+    border-radius: 2px;
+    transition: 0.3s all;
+  }
+  .menu-input:hover,
+  .menu-input:focus {
+    margin: 0 5px;
+    background-color: #e3e3e3;
+    transition: 0.3s all;
+  }
+}
+
+.home-alert-main {
+}
+.home-alert {
+  padding: 0 20px;
+  position: absolute;
+  left: 756px;
+
+  border: 1px solid #999;
+  border-radius: 5px;
+  background-color: #fff;
+  transition: 0.8s all;
+
+  span {
+    font-weight: 700;
+  }
+}
+
+// Contents
+.home-contents {
+  //   width: 100%;
+  padding: 0 20px;
+
+  // 기능 더 늘어날 경우
+  // grid에서 flex로 변경, home-state-box의 width값을 285px로 지정
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  column-gap: 20px;
+}
+
+.home-state-box {
+  width: 100%;
+}
+
+.new-todo {
+  height: 40px;
+  margin-left: 10px;
+  padding: 0 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #e3e3e3;
+}
+
+// src/components/home/StateTitle.tsx
+.state-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &-text {
+    border-radius: 3px;
+  }
+
+  &-right {
+    height: 50px;
+    display: flex;
+    align-items: center;
+  }
+}
+
+// src/components/home/TodoBox.tsx
+.todo-box {
+  height: 50px;
+  margin-bottom: 20px;
+  padding: 0 12px;
+
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+
+  border: 1px solid #999;
+  border-radius: 5px;
+  box-shadow: 0px 5px 5px #e3e3e3;
+  background-color: #fff;
+  transition: 0.3s all;
+}
+.todo-box:hover {
+  background-color: #daf0ff;
+  transition: 0.3s all;
+}
