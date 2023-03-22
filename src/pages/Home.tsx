@@ -6,6 +6,7 @@ import StateTitle from "components/home/StateTitle";
 import { initialDataArr as dataArr } from "static/initialDataArr";
 import NewTodo from "components/home/NewTodo";
 import TodoBox from "components/home/TodoBox";
+import Todo from "components/home/Todo";
 
 // 상태 없음 none
 // 시작 전 ready
@@ -38,6 +39,14 @@ export default function Home() {
       <div className="home-contents">
         {initialDataArr.map(
           (initialData: IInitialDataArr, initialDataIdx: number) => {
+            // newTodo onClick
+            const addTodo: Function = () => {
+              let lst: IInitialDataArr[] = initialDataArr;
+              lst[initialDataIdx].todoArr.push({ todo: "" });
+              setInintalDataArr(lst);
+              reload();
+            };
+
             return (
               <div key={initialDataIdx} className="home-state-box">
                 <StateTitle
@@ -46,26 +55,37 @@ export default function Home() {
                   textStyle={{ backgroundColor: initialData.bgColor }}
                 />
                 {initialData.todoArr.map((todo: ItodoArr, todoIdx: number) => {
+                  // todoBox onChange
+                  const todoBoxChange: Function = (move: number) => {
+                    let lst = initialDataArr;
+                    if (todoIdx === 0)
+                      lst[initialDataIdx].todoArr.splice(todoIdx, todoIdx + 1);
+                    else lst[initialDataIdx].todoArr.splice(todoIdx, todoIdx);
+                    lst[initialDataIdx + move].todoArr.push({
+                      todo: todo.todo,
+                    });
+                    setInintalDataArr(lst);
+                    reload();
+                  };
+
+                  // todo onChange
+                  const todoChange: React.ChangeEventHandler<
+                    HTMLInputElement
+                  > = (e: React.ChangeEvent<HTMLInputElement>) => {
+                    const text = e.target.value;
+                    let lst = initialDataArr;
+                    lst[initialDataIdx].todoArr[todoIdx].todo = text;
+                    setInintalDataArr(lst);
+                    reload();
+                  };
+
                   return (
-                    <TodoBox
-                      key={todoIdx}
-                      initialDataIdx={initialDataIdx}
-                      todoIdx={todoIdx}
-                      todo={todo.todo}
-                      initialDataArr={initialDataArr}
-                      setInintalDataArr={setInintalDataArr}
-                      reload={reload}
-                    >
-                      <div>{todo.todo}</div>
+                    <TodoBox key={todoIdx} todoBoxChange={todoBoxChange}>
+                      <Todo todo={todo.todo} todoChange={todoChange} />
                     </TodoBox>
                   );
                 })}
-                <NewTodo
-                  initialDataIdx={initialDataIdx}
-                  initialDataArr={initialDataArr}
-                  setInintalDataArr={setInintalDataArr}
-                  reload={reload}
-                />
+                <NewTodo addTodo={addTodo} />
               </div>
             );
           }

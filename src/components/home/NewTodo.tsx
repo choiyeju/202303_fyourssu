@@ -3,26 +3,15 @@ import test from "assets/test.png";
 import { IInitialDataArr } from "pages/Home";
 
 interface Props {
-  initialDataIdx: number;
-  initialDataArr: IInitialDataArr[];
-  setInintalDataArr: Function;
-  reload: Function;
+  addTodo: Function;
 }
 
-export default function NewTodo({
-  initialDataIdx,
-  initialDataArr,
-  setInintalDataArr,
-  reload,
-}: Props) {
+export default function NewTodo({ addTodo }: Props) {
   return (
     <div
       className="new-todo"
       onClick={() => {
-        let lst: IInitialDataArr[] = initialDataArr;
-        lst[initialDataIdx].todoArr.push({ todo: "" });
-        setInintalDataArr(lst);
-        reload();
+        addTodo();
       }}
     >
       새로 만들기

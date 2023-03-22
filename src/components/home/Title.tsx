@@ -9,18 +9,18 @@ interface Props {
 
 export default function Title({ data }: Props) {
   const [showSideMenu, setShowSideMenu] = useState(false);
-  const [fadeInOut, setFadeInOut] = useState("");
+  const [fadeNText, setFadeNText] = useState("");
   const [alertText, setAlertText] = useState<string[]>(["", ""]);
 
   function isTodo(text: string) {
     for (let i = 0; i < data.length; i++)
       for (let j = 0; j < data[i].todoArr.length; j++)
         if (data[i].todoArr[j].todo === text) {
-          setFadeInOut("text-max");
+          setFadeNText("text-max");
           setAlertText([data[i].state, text]);
           return;
         }
-    if (fadeInOut === "text-max") setFadeInOut("text-min");
+    if (fadeNText === "text-max") setFadeNText("text-min");
     setAlertText(["", ""]);
   }
 
@@ -43,18 +43,18 @@ export default function Title({ data }: Props) {
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                 const text = e.target.value;
                 if (text === "") {
-                  if (fadeInOut === "text-max") setFadeInOut("fade-out1");
-                  else setFadeInOut("fade-out2");
+                  if (fadeNText === "text-max") setFadeNText("fade-out-max");
+                  else setFadeNText("fade-out-min");
                   setTimeout(() => {
                     setShowSideMenu(false);
                   }, 500);
                 } else if (text.length === 1) {
                   if (
-                    fadeInOut !== "fade-in" &&
-                    fadeInOut !== "text-max" &&
-                    fadeInOut !== "text-min"
+                    fadeNText !== "fade-in" &&
+                    fadeNText !== "text-max" &&
+                    fadeNText !== "text-min"
                   )
-                    setFadeInOut("fade-in");
+                    setFadeNText("fade-in");
                   setTimeout(() => {
                     setShowSideMenu(true);
                   }, 100);
@@ -69,7 +69,7 @@ export default function Title({ data }: Props) {
         </div>
       </div>
       {showSideMenu && (
-        <div className={"search-alert " + fadeInOut}>
+        <div className={"search-alert " + fadeNText}>
           {alertText[0] === "" ? (
             <>검색된 값 없음</>
           ) : (
