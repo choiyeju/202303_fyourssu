@@ -14,3 +14,9 @@ $ yarn start
   <img src="https://img.shields.io/badge/-Typescript-red"/>&nbsp
   <img src="https://img.shields.io/badge/-scss-yellow"/>&nbsp
 </p>
+
+### 구현 기능
+
+- 할 일 검색
+- 할 일 추가
+- Drag & Drop 이용한 할 일 이동
