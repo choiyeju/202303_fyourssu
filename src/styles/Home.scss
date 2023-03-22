@@ -82,13 +82,13 @@ input:focus {
 .text-min {
   animation: textMin ease-in-out 1s;
 }
-.fade-out1 {
+.fade-out-max {
   opacity: 0;
-  animation: fadeOut1 ease-in-out 1s;
+  animation: fadeOutMax ease-in-out 1s;
 }
-.fade-out2 {
+.fade-out-min {
   opacity: 0;
-  animation: fadeOut2 ease-in-out 1s;
+  animation: fadeOutMin ease-in-out 1s;
 }
 @keyframes fadeIn {
   0% {
@@ -108,7 +108,7 @@ input:focus {
   0% {
     width: 104.766px;
   }
-  50% {
+  30% {
     width: 302px;
   }
 }
@@ -116,25 +116,25 @@ input:focus {
   0% {
     width: 302px;
   }
-  50% {
+  30% {
     width: 104.766px;
   }
 }
-@keyframes fadeOut1 {
+@keyframes fadeOutMax {
   0% {
     width: 302px;
     opacity: 1;
   }
-  50% {
+  30% {
     width: 104.766px;
     opacity: 0;
   }
 }
-@keyframes fadeOut2 {
+@keyframes fadeOutMin {
   0% {
     opacity: 1;
   }
-  50% {
+  30% {
     width: 104.766px;
     opacity: 0;
   }
@@ -192,7 +192,6 @@ input:focus {
 
   display: flex;
   align-items: center;
-  font-weight: 700;
 
   border: 1px solid #999;
   border-radius: 5px;
@@ -203,4 +202,25 @@ input:focus {
 .todo-box:hover {
   background-color: #daf0ff;
   transition: 0.3s all;
+
+  .todo-img {
+    opacity: 1;
+    transition: 0.3s all;
+  }
+}
+
+// src/components/home/Todo.tsx
+.todo {
+  width: 100%;
+  text-align: left;
+  input {
+    font-weight: 700;
+    border: 0;
+    background-color: transparent;
+  }
+  .todo-img {
+    float: right;
+    opacity: 0;
+    transition: 0.3s all;
+  }
 }

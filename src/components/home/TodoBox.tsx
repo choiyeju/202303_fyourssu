@@ -8,23 +8,10 @@ import { IInitialDataArr } from "pages/Home";
 
 interface Props {
   children: ReactNode;
-  initialDataIdx: number;
-  todoIdx: number;
-  todo: string;
-  initialDataArr: IInitialDataArr[];
-  setInintalDataArr: Function;
-  reload: Function;
+  todoBoxChange: Function;
 }
 
-export default function TodoBox({
-  children,
-  initialDataIdx,
-  todoIdx,
-  todo,
-  initialDataArr,
-  setInintalDataArr,
-  reload,
-}: Props) {
+export default function TodoBox({ children, todoBoxChange }: Props) {
   const [dragStart, setDragStart] = useState<number>(0);
 
   return (
@@ -41,9 +28,7 @@ export default function TodoBox({
       onDragEnd={(e: React.DragEvent<HTMLDivElement>) => {
         const screen = document.body.clientWidth - 1200;
         let dragEnd = e.clientX;
-        if (screen >= 0) {
-          dragEnd = e.clientX - screen / 2;
-        }
+        if (screen >= 0) dragEnd = e.clientX - screen / 2;
 
         let calc = dragEnd - dragStart;
         if (calc > 0) calc = (calc + 80) / 300;
@@ -53,17 +38,7 @@ export default function TodoBox({
           (0 <= calc - move && calc - move <= 0.5) ||
           (0 >= calc - move && calc - move >= -0.5);
 
-        if (able) {
-          let lst = initialDataArr;
-          if (todoIdx === 0)
-            lst[initialDataIdx].todoArr.splice(todoIdx, todoIdx + 1);
-          else lst[initialDataIdx].todoArr.splice(todoIdx, todoIdx);
-          lst[initialDataIdx + move].todoArr.push({ todo: todo });
-
-          setInintalDataArr(lst);
-        }
-
-        reload();
+        if (able) todoBoxChange(move);
       }}
       draggable={true}
     >
